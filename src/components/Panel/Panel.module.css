@@ -31,9 +31,16 @@
 }
 
 .action-back {
+    opacity: 0;
     background: none;
     color: var(--cool-gray);
     font-weight: bold;
+    pointer-events: none;
+}
+
+.enabled {
+    opacity: 1;
+    pointer-events: all;
 }
 
 .action-next {

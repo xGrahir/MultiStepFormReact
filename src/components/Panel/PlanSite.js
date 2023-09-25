@@ -25,7 +25,7 @@ export const PlanSite = () => {
 		<>
 			<SiteHeader title={'Select your plan'}>You have the option of monthly or yearly billing.</SiteHeader>
 			<FormWrapper>
-				<form className={styles.form}>
+				<div className={styles.form}>
 					{inputs}
 					<div className={styles['switch-box']}>
 						<p className={!isSwitched ? styles.switched : ''}>Monthly</p>
@@ -35,7 +35,7 @@ export const PlanSite = () => {
 						</label>
 						<p className={isSwitched ? styles.switched : ''}>Yearly</p>
 					</div>
-				</form>
+				</div>
 			</FormWrapper>
 		</>
 	)
