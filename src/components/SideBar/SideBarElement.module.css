@@ -1,0 +1,18 @@
+.element {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0.5rem;
+    width: 35px;
+    height: 35px;
+    border: 1px solid var(--white);
+    border-radius: 50%;
+    color: var(--white);
+    font-weight: bold;
+}
+
+.active {
+    color: var(--marine-blue);
+    background-color: var(--light-blue);
+    border: none;
+}

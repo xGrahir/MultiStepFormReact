@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import { MainPage } from "./Pages/MainPage";
 
 function App() {
+
+  const data = [
+    {id:12, name: "lol"},
+    {id:9, name: 'lol2'},
+    {id:30, name: 'lol3'}
+  ]
+
+  const sorting = data.sort((objA, objB) => {
+    if(objA.id > objB.id) {
+      return -1
+    }
+  })
+
+  console.log(sorting);
+
+  const data2 = data.map(obj => obj)
+
+  const reversed = data2.sort((objA, objB) => {
+    if(objA.id < objB.id) {
+      return -1
+    }
+  })
+  
+  console.log(reversed);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MainPage />
   );
 }
 
