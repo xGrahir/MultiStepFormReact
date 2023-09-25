@@ -3,9 +3,9 @@ import { SideBarElement } from './SideBarElement'
 
 export const SideBar = () => {
 
-    const sideBarElements = [1,2,3,4]
+    const sideBarElements = [1, 2, 3, 4]
 
-    const elements = sideBarElements.map(element => <SideBarElement element = {element}/>)
+    const elements = sideBarElements.map(element => <SideBarElement key={element} element={element}/>)
 
 	return (
 		<div className={styles.background}>

@@ -1,3 +1,0 @@
-export const FirstSite = () => {
-    
-}

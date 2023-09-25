@@ -1,0 +1,58 @@
+.form-field input {
+    display: none;
+}
+
+.form-field label{
+    position: relative;
+    display: block;
+    cursor: pointer;
+    padding: 1rem;
+    border: 1px solid var(--cool-gray);
+    border-radius: 8px;
+  }
+
+  .form-field input:checked + label {
+    border: 2px solid var(--pastel-blue);
+    background-color: hsla(228, 100%, 84%, 0.3);
+  }
+
+  .form-field {
+    margin: 0.8rem 0;
+    color: var(--marine-blue);
+  }
+  
+  .icon {
+    margin-right: 1rem;
+    width: 40px;
+    height: 40px;
+  }
+
+  .label-text h3 {
+    font-size: 1rem;
+  }
+
+  .label-text .price {
+    margin: 0.3rem 0;
+    color: var(--cool-gray);
+    font-size: 0.9rem;
+  }
+
+  .arcade {
+    background-image: url('../assets/images/icon-arcade.svg'); 
+  }
+
+  .advanced {
+    background-image: url('../assets/images/icon-advanced.svg');
+  }
+  
+  .pro {
+    background-image: url('../assets/images/icon-pro.svg');
+  }
+
+  .wrap {
+    display: flex;
+  }
+
+  .months {
+    font-size: 0.8rem;
+  }

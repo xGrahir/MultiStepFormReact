@@ -1,0 +1,24 @@
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
+}
+
+.form-field label {
+    margin-bottom: 0.2rem;
+    font-size: 0.7rem;
+    color: var(--marine-blue);
+    font-weight: 500;
+}
+
+.form-field input {
+    padding: 0.5rem 1rem;
+    border-radius: 2px;
+    border: 1px solid var(--light-gray);
+}
+
+::placeholder {
+    color: var(--cool-gray);
+    font-weight: bold;
+}

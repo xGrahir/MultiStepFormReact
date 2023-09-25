@@ -1,0 +1,11 @@
+.header h2 {
+    margin-bottom: 0.5rem;
+    color: var(--marine-blue);
+    font-size: 1.3rem;
+}
+
+.header p {
+    color: var(--cool-gray);
+    line-height: 1.5rem;
+    font-size: 1rem;
+}
