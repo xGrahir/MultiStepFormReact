@@ -37,8 +37,6 @@ export const PersonalSite = ({ enableButtonHandler }) => {
 	} = useCheckInput()
 
 	useEffect(() => {
-
-
 		if(!nameValid || !mailValid || !phoneValid) {
 			dispatch(infoActions.setError())
 		} else {
