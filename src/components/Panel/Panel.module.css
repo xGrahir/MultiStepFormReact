@@ -52,3 +52,11 @@
 .action-next:hover {
     background-color: hsl(213, 96%, 28%);
 }
+
+.site-hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}

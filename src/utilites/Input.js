@@ -3,7 +3,7 @@ import styles from './Input.module.css'
 export const Input = ({ data, isSwitched }) => {
 	return (
 		<div className={styles['form-field']}>
-			<input type='radio' id={data.name} value={data.name} name={data.option} />
+			<input type='radio' id={data.name} value={data.name} name={data.option}/>
 			<label htmlFor={data.name}>
 				<div className={styles.wrap}>
 					<div className={`${styles.icon} ${styles[`${data.name}`]}`}></div>

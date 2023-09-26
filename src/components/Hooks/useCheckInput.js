@@ -3,25 +3,30 @@ import { useState } from 'react'
 export const useCheckInput = () => {
 	const [isValid, setIsValid] = useState(false)
 	const [isTouched, setIsTouched] = useState(false)
-    const [value, setValue] = useState()
 
 	const checkEmail = e => {
 		let validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+		
+		const mail = e.target.value
 
-		if (e.target.value.match(validRegex)) {
+		if (mail.match(validRegex)) {
 			setIsValid(true)
 		} else {
 			setIsValid(false)
 		}
+
 	}
 
 	const checkName = e => {
 
-		if (e.target.value.trim().length >= 3) {
+		const name = e.target.value.trim()
+
+		if (name.length >= 3) {
 			setIsValid(true)
 		} else {
 			setIsValid(false)
 		}
+	
 	}
 
     const checkPhoneNumber = e => {
@@ -34,11 +39,12 @@ export const useCheckInput = () => {
         } else {
             setIsValid(false)
         }
+
     }
 
 	const checkIfTouched = () => {
 		setIsTouched(true)
 	}
 
-	return { checkEmail, checkName, checkPhoneNumber, checkIfTouched, isValid,  isTouched, value  }
+	return { checkEmail, checkName, checkPhoneNumber, checkIfTouched, isValid,  isTouched  }
 }
