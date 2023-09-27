@@ -1,9 +1,18 @@
 import styles from './Input.module.css'
 
-export const Input = ({ data, isSwitched }) => {
+export const Input = ({ data, isSwitched, action, isSelected }) => {
+
+	const selectHandler = () => {
+		const price = isSwitched ? data.priceYear : data.priceMonth
+
+		action({price: price, name: data.name})
+	}
+
+	const checked = isSelected === data.name
+
 	return (
 		<div className={styles['form-field']}>
-			<input type='radio' id={data.name} value={data.name} name={data.option}/>
+			<input onChange={selectHandler} defaultChecked={checked}  type='radio' id={data.name} value={data.name} name={data.option}/>
 			<label htmlFor={data.name}>
 				<div className={styles.wrap}>
 					<div className={`${styles.icon} ${styles[`${data.name}`]}`}></div>

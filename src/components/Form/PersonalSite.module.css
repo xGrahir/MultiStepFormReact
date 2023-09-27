@@ -22,3 +22,8 @@
     color: var(--cool-gray);
     font-weight: bold;
 }
+
+.form-field p {
+    color: red;
+    font-size: 0.8rem;
+}

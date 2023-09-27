@@ -2,12 +2,13 @@ import styles from './Panel.module.css'
 import { PersonalSite } from './PersonalSite'
 import { PlanSite } from './PlanSite'
 import { useDispatch, useSelector } from 'react-redux'
-import { infoActions } from '../../store'
+import { pageActions, dataActions } from '../../store'
  
 export const Form = () => {
 
 	const dispatch = useDispatch()
-	const page = useSelector(state => state.info.page)
+	const page = useSelector(state => state.page.page)
+	const validation = useSelector(state => state.data.pageIsValid)
 
 	const title = {
 		0: 'Personal Info',
@@ -24,14 +25,16 @@ export const Form = () => {
 	]
 
 	const nextStep = () => {
-		if(page < pages.length-1) {
-			dispatch(infoActions.changePage(1))
+		if(page < pages.length-1 && validation) {
+			dispatch(pageActions.changePage(1))
+			dispatch(dataActions.changePageValid(false))
 		}
 	}
 	
 	const prevStep = () => {
-		if(page>0) {
-			dispatch(infoActions.changePage(-1))
+		if(page>0 && validation) {
+			dispatch(pageActions.changePage(-1))
+			dispatch(dataActions.changePageValid(false))
 		}
 	}
 

@@ -6,7 +6,7 @@ const sideBarElements = [1, 2, 3, 4]
 
 export const SideBar = () => {
 
-	const step = useSelector(state => state.info.page)
+	const step = useSelector(state => state.page.page)
 
     const elements = sideBarElements.map(element => <SideBarElement step={step} key={element} element={element}/>)
 

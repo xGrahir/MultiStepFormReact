@@ -1,16 +1,20 @@
 import styles from './SideBarElement.module.css'
-import { useDispatch } from 'react-redux'
-import { infoActions } from '../../store'
+import { useDispatch, useSelector } from 'react-redux'
+import { pageActions } from '../../store'
 
-export const SideBarElement = ({element, step}) => {
+export const SideBarElement = ({ element, step }) => {
+	const dispatch = useDispatch()
+	const validation = useSelector(state => state.data.pageIsValid)
 
-    const dispatch = useDispatch()
+	const changeSiteHandler = () => {
+		if (validation) {
+			dispatch(pageActions.changePageByClik(element - 1))
+		}
+	}
 
-    const changeSiteHandler = () => {
-        dispatch(infoActions.changePageByClik(element-1))
-    }
-
-    return (
-        <button onClick={changeSiteHandler} className={`${styles.element} ${step+1 === element && styles.active}`}>{element}</button>
-    )
+	return (
+		<button onClick={changeSiteHandler} className={`${styles.element} ${step + 1 === element && styles.active}`}>
+			{element}
+		</button>
+	)
 }

@@ -2,11 +2,14 @@ import styles from './PersonalSite.module.css'
 import { SiteHeader } from '../../utilites/SiteHeader'
 import { FormWrapper } from '../../utilites/FormWrapper'
 import { useCheckInput } from '../Hooks/useCheckInput'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
+import { usePageValid } from '../Hooks/usePageValid'
+import { useEffect } from 'react'
 
 export const PersonalSite = ({ title }) => {
 	const personal = useSelector(state => state.data.personal)
-	const validate = useSelector(state => state.data.validation)
+	const validate = useSelector(state => state.data.personalValidation)
+	const {personalSiteValid} = usePageValid()
 
 	const {
 		checkEmail,
@@ -25,6 +28,11 @@ export const PersonalSite = ({ title }) => {
 		isTouched: phoneIsTouched,
 		checkIfTouched: checkIfPhoneTouched,
 	} = useCheckInput()
+
+	useEffect(() => {
+		personalSiteValid()
+	}, [personalSiteValid])
+
 
 	return (
 		<>

@@ -1,7 +1,10 @@
 import { SiteHeader } from '../../utilites/SiteHeader'
 import { FormWrapper } from '../../utilites/FormWrapper'
 import { Input } from '../../utilites/Input'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { dataActions } from '../../store'
+import { usePageValid } from '../Hooks/usePageValid'
 import styles from './PlanSite.module.css'
 
 const INPUTS_DATA = [
@@ -11,15 +14,25 @@ const INPUTS_DATA = [
 ]
 
 export const PlanSite = ({title}) => {
-
+	
+	const dispatch = useDispatch()
     const [isSwitched, setIsSwitched] = useState(false)
-
+	const {planSiteValid} = usePageValid()
+	const selected = useSelector(state => state.data.plan)
     
     const switchHandler = () => {
         setIsSwitched(prev => !prev)
     }
-    
-    const inputs = INPUTS_DATA.map(input => <Input isSwitched={isSwitched} key={input.id} data={input} />)
+
+	const getInfoHandler = (data) => {
+		dispatch(dataActions.updatePlanData(data))
+	}
+
+	useEffect(() => {
+		planSiteValid()
+	}, [planSiteValid])
+
+    const inputs = INPUTS_DATA.map(input => <Input isSelected={selected.name} action={getInfoHandler} isSwitched={isSwitched} key={input.id} data={input} />)
 
 	return (
 		<>
