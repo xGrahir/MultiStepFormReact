@@ -3,48 +3,28 @@ import { SiteHeader } from '../../utilites/SiteHeader'
 import { FormWrapper } from '../../utilites/FormWrapper'
 import { useCheckInput } from '../Hooks/useCheckInput'
 import { useSelector, useDispatch } from 'react-redux'
-import { useEffect } from 'react'
-import { dataActions } from '../../store'
 
 export const PersonalSite = ({ title }) => {
-	const dispatch = useDispatch()
 	const personal = useSelector(state => state.data.personal)
+	const validate = useSelector(state => state.data.validation)
 
 	const {
 		checkEmail,
-		isValid: mailValid,
 		isTouched: mailIsTouched,
 		checkIfTouched: checkIfEmailTouched,
-		value: mailValue,
 	} = useCheckInput()
 
 	const {
 		checkName,
-		isValid: nameValid,
 		isTouched: nameIsTouched,
 		checkIfTouched: checkIfNameTouched,
-		value: nameValue,
 	} = useCheckInput()
 
 	const {
 		checkPhoneNumber,
-		isValid: phoneValid,
 		isTouched: phoneIsTouched,
 		checkIfTouched: checkIfPhoneTouched,
-		value: phoneValue,
 	} = useCheckInput()
-
-	const valids = { mailValid, nameValid, phoneValid }
-	const everyValid = Object.values(valids).every(Boolean)
-
-	useEffect(() => {
-		if(everyValid) {
-			console.log('valid');
-			dispatch(dataActions.updateData({ name: nameValue, mail: mailValue, phone: phoneValue }))
-		}
-
-		return(() => {})
-	}, [everyValid])
 
 	return (
 		<>
@@ -58,10 +38,11 @@ export const PersonalSite = ({ title }) => {
 							id='name'
 							onChange={checkName}
 							onBlur={checkIfNameTouched}
+							defaultValue={personal.name}
 							placeholder='e.g. Stephen King'
 							required
 						/>
-						{!nameValid && nameIsTouched ? <p>Wrong name or name has less than least 3 signs</p> : ''}
+						{!validate.name && nameIsTouched ? <p>Wrong name or name has less than least 3 signs</p> : ''}
 					</div>
 					<div className={styles['form-field']}>
 						<label htmlFor='email'>Email Address</label>
@@ -70,10 +51,11 @@ export const PersonalSite = ({ title }) => {
 							id='email'
 							onChange={checkEmail}
 							onBlur={checkIfEmailTouched}
+							defaultValue={personal.mail}
 							placeholder='e.g. stephenking@lorem.com'
 							required
 						/>
-						{!mailValid && mailIsTouched ? <p>E-mail is wrong</p> : ''}
+						{!validate.mail && mailIsTouched ? <p>E-mail is wrong</p> : ''}
 					</div>
 					<div className={styles['form-field']}>
 						<label htmlFor='number'>Phone Number</label>
@@ -82,10 +64,11 @@ export const PersonalSite = ({ title }) => {
 							id='number'
 							onChange={checkPhoneNumber}
 							onBlur={checkIfPhoneTouched}
+							defaultValue={personal.phone}
 							placeholder='e.g. +1 234 567 890'
 							required
 						/>
-						{!phoneValid && phoneIsTouched ? <p>Phone number is invalid</p> : ''}
+						{!validate.phone && phoneIsTouched ? <p>Phone number is invalid</p> : ''}
 					</div>
 				</div>
 			</FormWrapper>

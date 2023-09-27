@@ -1,7 +1,7 @@
 import { createSlice, configureStore } from '@reduxjs/toolkit'
 
 const initialState = { page: 0 }
-const dataInitial = { personal: { name: '', mail: '', phone: '' }}
+const dataInitial = { personal: { name: '', mail: '', phone: '' }, validation: {name: false, mail: false, phone: false}}
 
 const infoSlice = createSlice({
 	name: 'info',
@@ -12,7 +12,8 @@ const infoSlice = createSlice({
         },
         changePageByClik(state, action) {
             state.page = action.payload
-        }
+        },
+
     }
 })
 
@@ -21,8 +22,11 @@ const dataSlice = createSlice({
     initialState: dataInitial,
     reducers: {
         updateData(state, action) {
-            state.personal = action.payload
+            state.personal =  {...state.personal, ...action.payload}
         },
+        changeValidation(state, action) {
+            state.validation = {...state.validation, ...action.payload}
+        }
     }
 })
 

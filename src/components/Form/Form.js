@@ -18,11 +18,13 @@ export const Form = () => {
 
 	const pages = [
 		<PersonalSite title={title[page]}/>,
-		<PlanSite title={title[page]}/>
+		<PlanSite title={title[page]}/>,
+		3,
+		4
 	]
 
 	const nextStep = () => {
-		if(page <= pages.length) {
+		if(page < pages.length-1) {
 			dispatch(infoActions.changePage(1))
 		}
 	}

@@ -10,7 +10,7 @@ const INPUTS_DATA = [
 	{ name: 'pro', priceYear: 150, priceMonth: 15, id: 2, option: 'offer' },
 ]
 
-export const PlanSite = () => {
+export const PlanSite = ({title}) => {
 
     const [isSwitched, setIsSwitched] = useState(false)
 
@@ -23,7 +23,7 @@ export const PlanSite = () => {
 
 	return (
 		<>
-			<SiteHeader title={'Select your plan'}>You have the option of monthly or yearly billing.</SiteHeader>
+			<SiteHeader title={title}>You have the option of monthly or yearly billing.</SiteHeader>
 			<FormWrapper>
 				<div className={styles.form}>
 					{inputs}
