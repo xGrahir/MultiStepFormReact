@@ -2,24 +2,20 @@ import styles from './PersonalSite.module.css'
 import { SiteHeader } from '../../utilites/SiteHeader'
 import { FormWrapper } from '../../utilites/FormWrapper'
 import { useCheckInput } from '../Hooks/useCheckInput'
-import { useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { personalActions, infoActions } from '../../store'
+import { useEffect } from 'react'
+import { dataActions } from '../../store'
 
-export const PersonalSite = ({ enableButtonHandler }) => {
-	const personal = useSelector(state => state.personal.personal)
-
+export const PersonalSite = ({ title }) => {
 	const dispatch = useDispatch()
-
-	const name = useRef('')
-	const mail = useRef('')
-	const phone = useRef('')
+	const personal = useSelector(state => state.data.personal)
 
 	const {
 		checkEmail,
 		isValid: mailValid,
 		isTouched: mailIsTouched,
 		checkIfTouched: checkIfEmailTouched,
+		value: mailValue,
 	} = useCheckInput()
 
 	const {
@@ -27,6 +23,7 @@ export const PersonalSite = ({ enableButtonHandler }) => {
 		isValid: nameValid,
 		isTouched: nameIsTouched,
 		checkIfTouched: checkIfNameTouched,
+		value: nameValue,
 	} = useCheckInput()
 
 	const {
@@ -34,22 +31,24 @@ export const PersonalSite = ({ enableButtonHandler }) => {
 		isValid: phoneValid,
 		isTouched: phoneIsTouched,
 		checkIfTouched: checkIfPhoneTouched,
+		value: phoneValue,
 	} = useCheckInput()
 
+	const valids = { mailValid, nameValid, phoneValid }
+	const everyValid = Object.values(valids).every(Boolean)
+
 	useEffect(() => {
-		if(!nameValid || !mailValid || !phoneValid) {
-			dispatch(infoActions.setError())
-		} else {
-			dispatch(infoActions.discardError())
-			dispatch(personalActions.updateName({name: name.current.value, mail: mail.current.value, phone: phone.current.value}))
+		if(everyValid) {
+			console.log('valid');
+			dispatch(dataActions.updateData({ name: nameValue, mail: mailValue, phone: phoneValue }))
 		}
 
-		return (() => {})
-	}, [name.current.value, mail.current.value, phone.current.value, nameValid, mailValid, phoneValid, dispatch])
+		return(() => {})
+	}, [everyValid])
 
 	return (
 		<>
-			<SiteHeader title={'Personal info'}> Please provide your name, email, address and phone number. </SiteHeader>
+			<SiteHeader title={title}> Please provide your name, email, address and phone number. </SiteHeader>
 			<FormWrapper>
 				<div className={styles.form}>
 					<div className={styles['form-field']}>
@@ -57,10 +56,10 @@ export const PersonalSite = ({ enableButtonHandler }) => {
 						<input
 							type='text'
 							id='name'
-							ref={name}
 							onChange={checkName}
 							onBlur={checkIfNameTouched}
 							placeholder='e.g. Stephen King'
+							required
 						/>
 						{!nameValid && nameIsTouched ? <p>Wrong name or name has less than least 3 signs</p> : ''}
 					</div>
@@ -69,10 +68,10 @@ export const PersonalSite = ({ enableButtonHandler }) => {
 						<input
 							type='email'
 							id='email'
-							ref={mail}
 							onChange={checkEmail}
 							onBlur={checkIfEmailTouched}
 							placeholder='e.g. stephenking@lorem.com'
+							required
 						/>
 						{!mailValid && mailIsTouched ? <p>E-mail is wrong</p> : ''}
 					</div>
@@ -81,10 +80,10 @@ export const PersonalSite = ({ enableButtonHandler }) => {
 						<input
 							type='text'
 							id='number'
-							ref={phone}
 							onChange={checkPhoneNumber}
 							onBlur={checkIfPhoneTouched}
 							placeholder='e.g. +1 234 567 890'
+							required
 						/>
 						{!phoneValid && phoneIsTouched ? <p>Phone number is invalid</p> : ''}
 					</div>

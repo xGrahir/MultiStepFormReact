@@ -1,36 +1,34 @@
 import { createSlice, configureStore } from '@reduxjs/toolkit'
 
-const initialState = { siteNumber: 1, error: 0 }
-const personalDataInitial = { personal: { name: '', mail: '', phone: '' }}
+const initialState = { page: 0 }
+const dataInitial = { personal: { name: '', mail: '', phone: '' }}
 
 const infoSlice = createSlice({
 	name: 'info',
     initialState: initialState,
     reducers: {
-        updateSite(state, action) {
-            state.siteNumber += action.payload
+        changePage(state, action) {
+            state.page += action.payload
         },
-        setError(state, action) {
-            state.error = 1
-        },
-        discardError(state, action) {
-            state.error = 0
+        changePageByClik(state, action) {
+            state.page = action.payload
         }
     }
 })
 
-const personalDataSlice = createSlice({
-    name: 'personal',
-    initialState: personalDataInitial,
+const dataSlice = createSlice({
+    name: 'data',
+    initialState: dataInitial,
     reducers: {
-        updateName(state, action) {
-            state.personal = {...action.payload}
+        updateData(state, action) {
+            state.personal = action.payload
         },
     }
 })
 
-const store = configureStore({reducer: {info: infoSlice.reducer, personal: personalDataSlice.reducer }})
+
+const store = configureStore({reducer: {info: infoSlice.reducer, data: dataSlice.reducer }})
 
 export default store
 export const infoActions = infoSlice.actions
-export const personalActions = personalDataSlice.actions
+export const dataActions = dataSlice.actions

@@ -9,6 +9,8 @@
     border-radius: 50%;
     color: var(--white);
     font-weight: bold;
+    background: none;
+    cursor: pointer;
 }
 
 .active {

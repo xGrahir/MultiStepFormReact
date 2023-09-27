@@ -1,5 +1,5 @@
 import { SideBar } from '../components/SideBar/SideBar'
-import { Panel } from '../components/Panel/Panel'
+import { Form } from '../components/Form/Form'
 import { Wrapper } from '../utilites/Wrapper'
 
 export const MainPage = () => {
@@ -7,7 +7,7 @@ export const MainPage = () => {
 		<>
 			<Wrapper>
 				<SideBar />
-                <Panel />
+                <Form />
 			</Wrapper>
 		</>
 	)

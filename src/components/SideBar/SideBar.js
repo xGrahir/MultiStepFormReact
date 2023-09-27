@@ -6,9 +6,9 @@ const sideBarElements = [1, 2, 3, 4]
 
 export const SideBar = () => {
 
-	const site = useSelector(state => state.info.siteNumber)
+	const step = useSelector(state => state.info.page)
 
-    const elements = sideBarElements.map(element => <SideBarElement site={site} key={element} element={element}/>)
+    const elements = sideBarElements.map(element => <SideBarElement step={step} key={element} element={element}/>)
 
 	return (
 		<div className={styles.background}>
