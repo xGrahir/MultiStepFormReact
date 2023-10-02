@@ -1,4 +1,4 @@
-import styles from './Input.module.css'
+import styles from './PlansInput.module.css'
 
 export const Input = ({ data, isSwitched, action, isSelected }) => {
 
@@ -12,7 +12,7 @@ export const Input = ({ data, isSwitched, action, isSelected }) => {
 
 	return (
 		<div className={styles['form-field']}>
-			<input onChange={selectHandler} defaultChecked={checked}  type='radio' id={data.name} value={data.name} name={data.option}/>
+			<input onChange={selectHandler} defaultChecked={checked}  type='radio' id={data.name} name={data.option}/>
 			<label htmlFor={data.name}>
 				<div className={styles.wrap}>
 					<div className={`${styles.icon} ${styles[`${data.name}`]}`}></div>

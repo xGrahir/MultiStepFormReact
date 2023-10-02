@@ -1,6 +1,6 @@
 import { SiteHeader } from '../../utilites/SiteHeader'
 import { FormWrapper } from '../../utilites/FormWrapper'
-import { Input } from '../../utilites/Input'
+import { Input } from '../../utilites/PlansInput'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { dataActions } from '../../store'

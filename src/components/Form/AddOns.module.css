@@ -1,0 +1,33 @@
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.input-text {
+    display: flex;
+    align-items: center;
+}
+
+.form-field {
+    position: relative;
+}
+
+.form-field label{
+    position: relative;
+    display: block;
+    cursor: pointer;
+    padding: 1rem;
+    border: 1px solid var(--cool-gray);
+    border-radius: 8px;
+  }
+
+  .form-field input:checked + label {
+    border: 2px solid var(--pastel-blue);
+    background-color: hsla(228, 100%, 84%, 0.3);
+  }
+
+  .form-field {
+    margin: 0.8rem 0;
+    color: var(--marine-blue);
+  }

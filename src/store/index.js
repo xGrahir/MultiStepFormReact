@@ -15,7 +15,7 @@ const pageSlice = createSlice({
 		changePage(state, action) {
 			state.page += action.payload
 		},
-		changePageByClik(state, action) {
+		changePageByClick(state, action) {
 			state.page = action.payload
 		},
 	},
