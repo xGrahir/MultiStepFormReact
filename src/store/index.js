@@ -4,7 +4,7 @@ const initialState = { page: 0 }
 const dataInitial = {
 	personal: { name: '', mail: '', phone: '' },
 	personalValidation: { name: false, mail: false, phone: false },
-	plan: {price: '', name: ''},
+	plan: {price: '', name: '', option: 'monthly'},
     pageIsValid: false
 }
 
@@ -36,7 +36,10 @@ const dataSlice = createSlice({
 		},
         changePageValid(state, action) {
             state.pageIsValid = action.payload
-        }
+        },
+		changePlanOption(state, action) {
+			state.plan = {...state.plan, ...action.payload}
+		}
 	},
 })
 

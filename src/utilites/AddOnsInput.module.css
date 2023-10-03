@@ -1,0 +1,80 @@
+.wrapper {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+    margin-top: 1rem;
+	cursor: pointer;
+	padding: 1rem;
+	border: 1px solid var(--cool-gray);
+	border-radius: 8px;
+}
+
+.form-info {
+	display: flex;
+	align-items: center;
+	position: relative;
+}
+
+input[type='checkbox'] {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
+}
+
+.checkmark {
+	position: absolute;
+	top: 8px;
+	left: 0px;
+	height: 18px;
+	width: 18px;
+	border: 1px solid var(--cool-gray);
+	background: none;
+	border-radius: 3px;
+}
+
+input[type='checkbox']:checked ~ .checkmark {
+	background-color: var(--purplish-blue);
+}
+
+.checkmark:after {
+	content: '';
+	position: absolute;
+	display: none;
+}
+
+input[type='checkbox']:checked ~ .checkmark:after {
+	display: block;
+}
+
+.form-info .checkmark:after {
+	left: 40%;
+	top: 15%;
+	width: 3px;
+	height: 8px;
+	border: solid white;
+	border-width: 0 2px 2px 0;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.form-text {
+	margin-left: 2rem;
+}
+
+.form-text h3 {
+	color: var(--marine-blue);
+	font-size: 0.9rem;
+}
+
+.form-text p {
+	color: var(--cool-gray);
+	font-size: 0.8rem;
+}
+
+.price p {
+	color: var(--purplish-blue);
+	font-size: 0.8rem;
+}

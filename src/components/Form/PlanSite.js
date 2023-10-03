@@ -1,7 +1,7 @@
 import { SiteHeader } from '../../utilites/SiteHeader'
 import { FormWrapper } from '../../utilites/FormWrapper'
 import { Input } from '../../utilites/PlansInput'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { dataActions } from '../../store'
 import { usePageValid } from '../Hooks/usePageValid'
@@ -13,26 +13,34 @@ const INPUTS_DATA = [
 	{ name: 'pro', priceYear: 150, priceMonth: 15, id: 2, option: 'offer' },
 ]
 
-export const PlanSite = ({title}) => {
-	
+export const PlanSite = ({ title }) => {
 	const dispatch = useDispatch()
-    const [isSwitched, setIsSwitched] = useState(false)
-	const {planSiteValid} = usePageValid()
+	const [isSwitched, setIsSwitched] = useState(false)
+	const { planSiteValid } = usePageValid()
 	const selected = useSelector(state => state.data.plan)
-    
-    const switchHandler = () => {
-        setIsSwitched(prev => !prev)
-    }
 
-	const getInfoHandler = (data) => {
+	const switchHandler = useCallback(() => {
+		setIsSwitched(prev => !prev)
+	},[])
+
+	const getInfoHandler = data => {
 		dispatch(dataActions.updatePlanData(data))
+
+		if (isSwitched) {
+			dispatch(dataActions.changePlanOption({ option: 'yearly' }))
+		} else {
+			dispatch(dataActions.changePlanOption({ option: 'monthly' }))
+		}
 	}
 
 	useEffect(() => {
 		planSiteValid()
+
 	}, [planSiteValid])
 
-    const inputs = INPUTS_DATA.map(input => <Input isSelected={selected.name} action={getInfoHandler} isSwitched={isSwitched} key={input.id} data={input} />)
+	const inputs = INPUTS_DATA.map(input => (
+		<Input isSelected={selected.name} action={getInfoHandler} isSwitched={isSwitched} key={input.id} data={input} />
+	))
 
 	return (
 		<>
@@ -43,7 +51,7 @@ export const PlanSite = ({title}) => {
 					<div className={styles['switch-box']}>
 						<p className={!isSwitched ? styles.switched : ''}>Monthly</p>
 						<label className={styles.switch}>
-							<input type='checkbox' onChange={switchHandler}/>
+							<input checked={isSwitched ? true : false} type='checkbox' onChange={switchHandler} />
 							<span className={styles.slider}></span>
 						</label>
 						<p className={isSwitched ? styles.switched : ''}>Yearly</p>
