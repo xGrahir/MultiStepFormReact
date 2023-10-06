@@ -4,8 +4,13 @@ const initialState = { page: 0 }
 const dataInitial = {
 	personal: { name: '', mail: '', phone: '' },
 	personalValidation: { name: false, mail: false, phone: false },
-	plan: {price: '', name: '', option: 'monthly'},
-    pageIsValid: false
+	plan: { price: '', name: '', option: 'monthly' },
+	addOns: {
+		service: { checked: 'false', price: '' },
+		storage: { checked: 'false', price: '' },
+		profile: { checked: 'false', price: '' },
+	},
+	pageIsValid: false,
 }
 
 const pageSlice = createSlice({
@@ -28,18 +33,18 @@ const dataSlice = createSlice({
 		updatePersonalData(state, action) {
 			state.personal = { ...state.personal, ...action.payload }
 		},
-        updatePlanData(state, action) {
-            state.plan = {...action.payload}
-        },
+		updatePlanData(state, action) {
+			state.plan = { ...state.plan, ...action.payload }
+		},
 		changePersonalValidation(state, action) {
 			state.personalValidation = { ...state.personalValidation, ...action.payload }
 		},
-        changePageValid(state, action) {
-            state.pageIsValid = action.payload
-        },
+		changePageValid(state, action) {
+			state.pageIsValid = action.payload
+		},
 		changePlanOption(state, action) {
-			state.plan = {...state.plan, ...action.payload}
-		}
+			state.plan = { ...state.plan, ...action.payload }
+		},
 	},
 })
 

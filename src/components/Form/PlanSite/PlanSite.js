@@ -1,10 +1,10 @@
-import { SiteHeader } from '../../utilites/SiteHeader'
-import { FormWrapper } from '../../utilites/FormWrapper'
-import { Input } from '../../utilites/PlansInput'
+import { SiteHeader } from '../../../utilites/SiteHeader'
+import { FormWrapper } from '../../../utilites/FormWrapper'
+import { PlansInput } from '../../../utilites/PlansInput'
 import { useState, useEffect, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { dataActions } from '../../store'
-import { usePageValid } from '../Hooks/usePageValid'
+import { dataActions } from '../../../store'
+import { usePageValid } from '../../Hooks/usePageValid'
 import styles from './PlanSite.module.css'
 
 const INPUTS_DATA = [
@@ -21,25 +21,34 @@ export const PlanSite = ({ title }) => {
 
 	const switchHandler = useCallback(() => {
 		setIsSwitched(prev => !prev)
-	},[])
 
-	const getInfoHandler = data => {
-		dispatch(dataActions.updatePlanData(data))
-
-		if (isSwitched) {
+		if (!isSwitched) {
 			dispatch(dataActions.changePlanOption({ option: 'yearly' }))
 		} else {
 			dispatch(dataActions.changePlanOption({ option: 'monthly' }))
 		}
+	}, [dispatch, isSwitched])
+
+	const getInfoHandler = data => {
+		dispatch(dataActions.updatePlanData(data))
 	}
 
 	useEffect(() => {
 		planSiteValid()
 
-	}, [planSiteValid])
+		if (selected.option === 'yearly') {
+			setIsSwitched(true)
+		}
+	}, [planSiteValid, selected.option])
 
 	const inputs = INPUTS_DATA.map(input => (
-		<Input isSelected={selected.name} action={getInfoHandler} isSwitched={isSwitched} key={input.id} data={input} />
+		<PlansInput
+			isSelected={selected.name}
+			action={getInfoHandler}
+			isSwitched={isSwitched}
+			key={input.id}
+			data={input}
+		/>
 	))
 
 	return (

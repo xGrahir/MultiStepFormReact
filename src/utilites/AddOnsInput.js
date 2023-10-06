@@ -5,12 +5,18 @@ export const AddOnsInput = ({data}) => {
 
     const planOption = useSelector(state => state.data.plan.option)
 
+	const price  = planOption === 'monthly' ? `${data.priceMonthly}/mo` : `${data.priceYearly}/yr`
+
+	const someFunction = (e) => {
+		console.log(e.target.value);
+	}
+
 	return (
-		<label htmlFor={data.name} className={styles['form-field']}>
+		<label htmlFor={data.id} className={styles['form-field']}>
 			<div className={styles.wrapper}>
 				<div className={styles['form-info']}>
 					<div>
-						<input type='checkbox' id={data.name} />
+						<input onClick={someFunction} type='checkbox' id={data.id} value={data.id}/>
 						<span className={styles.checkmark}></span>
 					</div>
 					<div className={styles['form-text']}>
@@ -19,7 +25,7 @@ export const AddOnsInput = ({data}) => {
 					</div>
 				</div>
 				<div className={styles.price}>
-					<p>{`+$${planOption === 'monthly' ? `${data.priceMonthly}/mo`: `${data.priceYearly}/yr`}`}</p>
+					<p>{`+$${price}`}</p>
 				</div>
 			</div>
 		</label>

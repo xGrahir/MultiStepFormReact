@@ -1,38 +1,25 @@
 import styles from './PersonalSite.module.css'
-import { SiteHeader } from '../../utilites/SiteHeader'
-import { FormWrapper } from '../../utilites/FormWrapper'
-import { useCheckInput } from '../Hooks/useCheckInput'
+import { SiteHeader } from '../../../utilites/SiteHeader'
+import { FormWrapper } from '../../../utilites/FormWrapper'
+import { useCheckInput } from '../../Hooks/useCheckInput'
 import { useSelector } from 'react-redux'
-import { usePageValid } from '../Hooks/usePageValid'
+import { usePageValid } from '../../Hooks/usePageValid'
 import { useEffect } from 'react'
 
 export const PersonalSite = ({ title }) => {
 	const personal = useSelector(state => state.data.personal)
 	const validate = useSelector(state => state.data.personalValidation)
-	const {personalSiteValid} = usePageValid()
+	const { personalSiteValid } = usePageValid()
 
-	const {
-		checkEmail,
-		isTouched: mailIsTouched,
-		checkIfTouched: checkIfEmailTouched,
-	} = useCheckInput()
+	const { checkEmail, isTouched: mailIsTouched, checkIfTouched: checkIfEmailTouched } = useCheckInput()
 
-	const {
-		checkName,
-		isTouched: nameIsTouched,
-		checkIfTouched: checkIfNameTouched,
-	} = useCheckInput()
+	const { checkName, isTouched: nameIsTouched, checkIfTouched: checkIfNameTouched } = useCheckInput()
 
-	const {
-		checkPhoneNumber,
-		isTouched: phoneIsTouched,
-		checkIfTouched: checkIfPhoneTouched,
-	} = useCheckInput()
+	const { checkPhoneNumber, isTouched: phoneIsTouched, checkIfTouched: checkIfPhoneTouched } = useCheckInput()
 
 	useEffect(() => {
 		personalSiteValid()
 	}, [personalSiteValid])
-
 
 	return (
 		<>

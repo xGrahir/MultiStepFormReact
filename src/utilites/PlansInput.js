@@ -1,6 +1,7 @@
 import styles from './PlansInput.module.css'
+import { useEffect } from 'react'
 
-export const Input = ({ data, isSwitched, action, isSelected }) => {
+export const PlansInput = ({ data, isSwitched, action, isSelected }) => {
 
 	const selectHandler = () => {
 		const price = isSwitched ? data.priceYear : data.priceMonth
@@ -10,9 +11,15 @@ export const Input = ({ data, isSwitched, action, isSelected }) => {
 
 	const checked = isSelected === data.name
 
+	useEffect(() => {
+		if(checked) {
+			selectHandler()
+		}
+	}, [checked, isSwitched])
+
 	return (
 		<div className={styles['form-field']}>
-			<input onChange={selectHandler} defaultChecked={checked}  type='radio' id={data.name} name={data.option}/>
+			<input onClick={selectHandler} defaultChecked={checked} type='radio' id={data.name} name={data.option}/>
 			<label htmlFor={data.name}>
 				<div className={styles.wrap}>
 					<div className={`${styles.icon} ${styles[`${data.name}`]}`}></div>
