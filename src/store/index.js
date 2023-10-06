@@ -6,9 +6,9 @@ const dataInitial = {
 	personalValidation: { name: false, mail: false, phone: false },
 	plan: { price: '', name: '', option: 'monthly' },
 	addOns: {
-		service: { checked: 'false', price: '' },
-		storage: { checked: 'false', price: '' },
-		profile: { checked: 'false', price: '' },
+		service: { checked: false, price: '' },
+		storage: { checked: false, price: '' },
+		profile: { checked: false, price: '' },
 	},
 	pageIsValid: false,
 }
@@ -20,7 +20,7 @@ const pageSlice = createSlice({
 		changePage(state, action) {
 			state.page += action.payload
 		},
-		changePageByClick(state, action) {
+		changePageByClickOnNumber(state, action) {
 			state.page = action.payload
 		},
 	},
@@ -45,6 +45,10 @@ const dataSlice = createSlice({
 		changePlanOption(state, action) {
 			state.plan = { ...state.plan, ...action.payload }
 		},
+		changeAddOnsStatus(state, action) {
+			const value = Object.keys(state.addOns).filter(item => item === action.payload.name)
+			console.log(state.addOns[value]);
+		}
 	},
 })
 

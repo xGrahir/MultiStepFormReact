@@ -8,7 +8,7 @@ export const SideBarElement = ({ element, step }) => {
 
 	const changeSiteHandler = () => {
 		if (validation) {
-			dispatch(pageActions.changePageByClick(element - 1))
+			dispatch(pageActions.changePageByClickOnNumber(element - 1))
 		}
 	}
 

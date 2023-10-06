@@ -1,14 +1,18 @@
 import styles from './AddOnsInput.module.css'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { dataActions } from '../store'
 
 export const AddOnsInput = ({data}) => {
 
     const planOption = useSelector(state => state.data.plan.option)
+	const dispatch = useDispatch()
 
 	const price  = planOption === 'monthly' ? `${data.priceMonthly}/mo` : `${data.priceYearly}/yr`
 
 	const someFunction = (e) => {
-		console.log(e.target.value);
+		const priceToSend = price.replace(/[^\d]*$/, '') // Removes everything after digit
+
+		dispatch(dataActions.changeAddOnsStatus({name: e.target.value, price: priceToSend}))
 	}
 
 	return (
