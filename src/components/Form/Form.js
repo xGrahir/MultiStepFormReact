@@ -43,10 +43,10 @@ export const Form = () => {
 		<>
 			<form className={styles.wrapper}>
 				<div className={styles.panel}>
-					{/* {pages[page]} */}
+					{pages[page]}
 					{/* <AddOns title={title[page]} /> */}
 					{/* <PlanSite title={title[page]}/>, */}
-					<SummarySite title={title[3]}/>
+					{/* <SummarySite title={title[3]}/> */}
 				</div>
 				<div className={styles.actions}>
 					<button onClick={prevStep} type='button' className={`${styles['action-back']} ${styles.enabled}`}>

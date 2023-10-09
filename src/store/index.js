@@ -53,7 +53,7 @@ const dataSlice = createSlice({
 			} else {
 				state.addOns[value].checked = true
 			}
-			state.addOns[value] = { ...state.addOns[value], price: action.payload.price }
+			state.addOns[value] = { ...state.addOns[value], price: action.payload.price, title: action.payload.title }
 		},
 	},
 })
