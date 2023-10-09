@@ -41,8 +41,9 @@ export const AddOns = ({ title }) => {
 	return (
 		<>
 			<SiteHeader title={title}>Add-ons help enhance your gaming experience.</SiteHeader>
-			<FormWrapper></FormWrapper>
-			<div className={styles.form}>{inputs}</div>
+			<FormWrapper>
+				<div className={styles.form}>{inputs}</div>
+			</FormWrapper>
 		</>
 	)
 }

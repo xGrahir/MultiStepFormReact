@@ -47,8 +47,14 @@ const dataSlice = createSlice({
 		},
 		changeAddOnsStatus(state, action) {
 			const value = Object.keys(state.addOns).filter(item => item === action.payload.name)
-			console.log(state.addOns[value]);
-		}
+
+			if (state.addOns[value].checked) {
+				state.addOns[value].checked = false
+			} else {
+				state.addOns[value].checked = true
+			}
+			state.addOns[value] = { ...state.addOns[value], price: action.payload.price }
+		},
 	},
 })
 

@@ -1,6 +1,7 @@
 import styles from './Panel.module.css'
 import { PersonalSite } from './PersonalSite/PersonalSite'
 import { PlanSite } from './PlanSite/PlanSite'
+import { SummarySite } from './SummarySite/SummarySite'
 import { AddOns } from './AddOnsSite/AddOnsSite'
 import { useDispatch, useSelector } from 'react-redux'
 import { pageActions, dataActions } from '../../store'
@@ -21,7 +22,7 @@ export const Form = () => {
 		<PersonalSite title={title[page]} />,
 		<PlanSite title={title[page]} />,
 		<AddOns title={title[page]} />,
-		4,
+		<SummarySite title={title[page]}/>,
 	]
 
 	const nextStep = () => {
@@ -43,8 +44,9 @@ export const Form = () => {
 			<form className={styles.wrapper}>
 				<div className={styles.panel}>
 					{/* {pages[page]} */}
-					<AddOns title={title[page]} />
+					{/* <AddOns title={title[page]} /> */}
 					{/* <PlanSite title={title[page]}/>, */}
+					<SummarySite title={title[3]}/>
 				</div>
 				<div className={styles.actions}>
 					<button onClick={prevStep} type='button' className={`${styles['action-back']} ${styles.enabled}`}>
