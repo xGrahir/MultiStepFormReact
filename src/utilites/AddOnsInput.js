@@ -7,12 +7,20 @@ export const AddOnsInput = ({data}) => {
 	const addOns = useSelector(state => state.data.addOns)
 	const dispatch = useDispatch()
 
-	const price = planOption === 'monthly' ? `${data.priceMonthly}/mo` : `${data.priceYearly}/yr`
+	let option
+	let price = data.priceMonthly
+
+	if(planOption === 'monthly') {
+		option = '/mo'
+	} else {
+		option = '/yr'
+		price *= 10
+	}
 
 	const checkHandler = (e) => {
-		const priceToSend = price.replace(/[^\d]*$/, '') // Removes everything after digit
+		// const priceToSend = price.replace(/[^\d]*$/, '') // Removes everything after digit
 
-		dispatch(dataActions.changeAddOnsStatus({name: e.target.value, price: priceToSend, title: data.title}))
+		dispatch(dataActions.changeAddOnsStatus({name: e.target.value, price: price, title: data.title}))
 	}
 	
 	// Check if checked is set to true (simply compare id of item to key in store, if the same then get this item and then take his checked value)
@@ -33,7 +41,7 @@ export const AddOnsInput = ({data}) => {
 					</div>
 				</div>
 				<div className={styles.price}>
-					<p>{`+$${price}`}</p>
+					<p>{`+$${price}${option}`}</p>
 				</div>
 			</div>
 		</label>
