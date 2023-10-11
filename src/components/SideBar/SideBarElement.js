@@ -5,9 +5,14 @@ import { pageActions } from '../../store'
 export const SideBarElement = ({ element, step }) => {
 	const dispatch = useDispatch()
 	const validation = useSelector(state => state.data.pageIsValid)
+	const planName = useSelector(state => state.data.plan.name)
 
-	const changeSiteHandler = () => {
-		if (validation) {
+	const changeSiteHandler = (e) => {
+		if((element === 4 || element === 3) && !planName) {
+			return
+		}
+
+		if(validation) {
 			dispatch(pageActions.changePageByClickOnNumber(element - 1))
 		}
 	}

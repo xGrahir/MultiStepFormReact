@@ -39,6 +39,7 @@ export const PlanSite = ({ title }) => {
 		if (selected.option === 'yearly') {
 			setIsSwitched(true)
 		}
+		
 	}, [planSiteValid, selected.option])
 
 	const inputs = INPUTS_DATA.map(input => (

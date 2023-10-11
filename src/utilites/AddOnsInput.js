@@ -20,7 +20,7 @@ export const AddOnsInput = ({data}) => {
 	const checkHandler = (e) => {
 		// const priceToSend = price.replace(/[^\d]*$/, '') // Removes everything after digit
 
-		dispatch(dataActions.changeAddOnsStatus({name: e.target.value, price: price, title: data.title}))
+		dispatch(dataActions.changeAddOnsStatus({name: e.target.value, price: data.priceMonthly, title: data.title}))
 	}
 	
 	// Check if checked is set to true (simply compare id of item to key in store, if the same then get this item and then take his checked value)
